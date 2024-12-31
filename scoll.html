@@ -1,0 +1,54 @@
+<html>
+<head>
+  <title>Open Link in New Tab</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin-top: 50px;
+    }
+
+    a {
+      color: blue;
+      font-size: 20px;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: brown;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#" id="openLink">Open a New window Tab</a>
+
+<script>
+  document.getElementById('openLink').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    let newTab = window.open('', '_blank', 'width=600,height=600');
+
+    const paragraph = newTab.document.createElement('p');
+    paragraph.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."+
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. " +
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. " +
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ";
+    
+    paragraph.style.fontSize = '26px';
+    paragraph.style.color = 'black';
+    paragraph.style.fontFamily = 'Arial, sans-serif';
+    paragraph.style.padding = '10px';
+    paragraph.style.backgroundColor = 'beige';
+
+    newTab.document.body.appendChild(paragraph);
+
+    const scrollChild = () => {
+      newTab.scrollBy(0, 50);
+    };
+
+    setInterval(scrollChild, 1000);
+  });
+</script>
+
+</body>
+</html>
