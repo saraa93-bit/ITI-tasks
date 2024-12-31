@@ -1,0 +1,139 @@
+<html >
+<head>
+  <title>Slide Show Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+            text-align: center;
+            background-color: rgb(120, 253, 220);
+            color: yellowgreen;
+            border: 2px solid rgb(215, 237, 50);
+          
+    }
+
+    .slideshow-container {
+      position: relative;
+      width: 70%;
+      margin: 20px auto;
+      overflow: hidden;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      border: 4px solid hsl(68, 94%, 67%);
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+    #playBtn{
+        background-color: rgb(5, 170, 5);
+      }
+      #stopBtn{
+        background-color: rgb(218, 8, 8);
+      }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .arrow-btn {
+      font-size: 20px;
+      padding: 10px 15px;
+      background-color: rgb(196, 196, 2);
+    }
+  </style>
+</head>
+<body>
+ <div class="main">
+
+  <h1>Slide Show Game</h1>
+  <div class="slideshow-container">
+    <div class="slide">
+      <img src="images/party1.png" alt="Photo 1">
+    </div>
+    <div class="slide">
+      <img src="images/party2.png" alt="Photo 2">
+    </div>
+    <div class="slide">
+      <img src="images/party3.png" alt="Photo 3">
+    </div>
+    <div class="slide">
+      <img src="images/party4.png" alt="Photo 4">
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="arrow-btn" id="backBtn">&lt;</button>
+    <button id="playBtn">play</button>
+    <button id="stopBtn">Stop</button>
+    <button class="arrow-btn" id="nextBtn">&gt;</button>
+  </div>
+</div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const nextBtn = document.getElementById('nextBtn');
+    const backBtn = document.getElementById('backBtn');
+    const startBtn = document.getElementById('playBtn');
+    const stopBtn = document.getElementById('stopBtn');
+
+    let currentSlide = 0;
+    let autoSlideInterval;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+      });
+    }
+
+    showSlide(currentSlide);
+
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    });
+
+    backBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    });
+
+    startBtn.addEventListener('click', () => {
+      if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+      }
+      autoSlideInterval = setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }, 2000);
+    });
+
+    stopBtn.addEventListener('click', () => {
+      clearInterval(autoSlideInterval);
+    });
+  </script>
+
+</body>
+</html>
